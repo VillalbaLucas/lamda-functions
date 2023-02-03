@@ -1,65 +1,19 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.io.InputStream;
+import java.util.Scanner;
 
-import Clases.Carro;
-import Clases.Lambda;
-import Clases.Persona;
-import Clases.Genericos.Caja;
+import Clases.Mensaje;
 
-public class App implements Carro {
-    
-    Persona persona;
-    Carro carro = new Carro();
-    Caja<String, Integer> caja = new Caja<>();
-    List<Integer> arr = new ArrayList<>();
-    
-    @Override
-    public String arrancar() {
-        () -> System.out.println("Estoy arrancando el app");
-    }
+public class App {
 
+    public static void main(String[] args){
 
-    public void calcular(){
-        Lambda lambda = (x, y) -> x+y;
-        System.out.println(lambda.suma(5, 6));
+        Scanner in = new Scanner(System.in);
+        String mensajeIn = in.nextLine();
 
-    }
+        Mensaje mjs = (s) -> System.out.println("Nuevo mensaje: " + s);
+        Mensaje mjs2 = (s) -> System.out.println("Nuevo mensaje del metodo 2: " + s);
 
-    public void imprimir(List<Integer> arr){
-        arr.forEach((x)-> System.out.print(x + " "));
-        System.out.print("\n");
-    }
-
-
-    public static void main(String[] args) throws Exception {
-        
-        App app = new App();
-        //app.calcular();
-
-        List<Integer> array = new ArrayList<>();
-
-        array.add(1);
-        array.add(3);
-        array.add(20);
-        array.add(5);
-        array.add(15);
-        array.add(3);
-        array.add(7);
-
-        app.imprimir(array);
-
-        app.imprimir( 
-                    array
-                        .stream()
-                        .filter(x -> x < 9)
-                        .toList() 
-                ); 
-        array.sort((x,y) -> y.compareTo(x));
-        app.imprimir(array);
-
-
-        
-
+        mjs2.saludo(mensajeIn);
     }
 
 
