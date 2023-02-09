@@ -1,5 +1,7 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -14,7 +16,7 @@ public class App {
 
     public void addPersonas(){
         Persona p = new Persona("Lucas", "Villalba", 123445, 23);
-        Persona p2 = new Persona("Manuel", "Sosa", 123451251, 44);
+        Persona p2 = new Persona("Manuel", "Sosa", 123451251, 16);
         Persona p3 = new Persona("Estella", "Gomez", 42123717, 32);
         Persona p4 = new Persona("Maria", "Sain", 5543123, 23);
 
@@ -35,18 +37,31 @@ public class App {
         Mensaje mjs2 = (s) -> System.out.println("Nuevo mensaje del metodo 2: " + s);
 
         mjs.saludo(firstMjs);
-        mjs2.saludo(secondMjs);*/
-        
+        mjs2.saludo(secondMjs);*/ 
+
+        List<String> names = Arrays.asList("Santiago", "awdawd", "awdwda");
 
         App app = new App();
         app.addPersonas();
         System.out.print( app.getPersonas().stream()
                          .map(e -> e.toString())
-                         .collect( Collectors.joining(", ") ) );
+                         .collect( Collectors.joining(",\n ") ) );
                          
 
+        System.out.println("\n-------------- set de personas ----------------\n\n");
+        List<Persona> setList; 
+        setList = app.getPersonas()
+                                 .stream()
+                                 .filter(e -> e.getEdad() > 22)
+                                 .collect( Collectors.toList() );
+
+        setList.forEach(e -> System.out.print(e.getName() + ", "));
+        
+        setList.forEach(System.out::println);
+        System.out.println("\n-------------- Map de nombre de las personas ----------------\n\n");
+        app.getPersonas()
+                        .stream()
+                        .map(Persona::getName)
+                        .forEach(System.out::println);
     }
-
-
-
 }
