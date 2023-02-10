@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import Clases.Mensaje;
@@ -16,7 +17,7 @@ public class App {
     public void addPersonas() {
         Persona p = new Persona("Lucas", "Villalba", 123445, 23);
         Persona p2 = new Persona("Manuel", "Sosa", 123451251, 16);
-        Persona p3 = new Persona("Estella", "Gomez", 42123717, 32);
+        Persona p3 = new Persona("Estella", "Gomez", 42123717, 17);
         Persona p4 = new Persona("Maria", "Sain", 5543123, 23);
         Persona p5 = new Persona("Maria", "Sain", 5543123, 23);
         personas.add(p);
@@ -49,23 +50,22 @@ public class App {
         app.addPersonas();
         
 
-        System.out.println("\n-------------- set de personas ----------------\n\n");
-        List<Persona> setList;
-        setList = app.getPersonas()
-                .stream()
-                .filter(e -> e.getEdad() > 22).toList();
-                
+        System.out.println("\n-------------- set de personas mayor a edad ----------------\n");
+        ConjuntoSet<Persona> setListMayores;
+        setListMayores = app.getPersonas()
+                                        .stream()
+                                        .filter(e -> e.getEdad() > 22)
+                                        .collect(Collectors.toSet());
+                                        
+        setListMayores.forEach(e -> System.out.print(e.getName() + ", "));
 
-        setList.forEach(e -> System.out.print(e.getName() + ", "));
-
-        setList.forEach(System.out::println);
-        System.out.println("\n-------------- Map de nombre de las personas ----------------\n\n");
+        System.out.println("\n-------------- Map de nombre de las personas ----------------\n");
         app.getPersonas()
                 .stream()
                 .map(Persona::getName)
                 .forEach(System.out::println);
 
-        System.out.println("\n-------------- Trabajando con Set y Collect ----------------\n\n");
+        System.out.println("\n-------------- Trabajando con Set y Collect ----------------\n");
 
         System.out.println("\ncomo lista:");
         List<String> names = Arrays.asList("Santiago", "Ruperta", "Sebastian", "Santiago", "Sebastian", "Manito");
